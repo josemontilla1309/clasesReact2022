@@ -5,8 +5,17 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ItemCount from 'ItemCount.js'
+import { useState } from 'react';
+import data from './DataProduct';
+import { Link } from 'react-router-dom'
 
-export default function MediaCard({id, name, thumbnail, brand, size, price }) {
+
+const ItemDetail = ({data}) => {
+
+  const [quantitySelected , setQuantitySelected] = useState(0)
+
+function MediaCard({id, name, thumbnail, brand, size, price }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -28,9 +37,17 @@ export default function MediaCard({id, name, thumbnail, brand, size, price }) {
         <Typography variant="body2" color="text.secondary">
           {price}
         </Typography>
+        <ItemCount quantitySelected={setQuantitySelected} />
+
+        {
+          quantitySelected > 0 ? <link to="/cart"><button>Terminar Compra</button></link> : <ItemCount quantitySelected={setQuantitySelected} />
+        }
       </CardContent>
       <CardActions>
       </CardActions>
     </Card>
   );
 }
+}
+
+export default ItemDetail

@@ -1,8 +1,20 @@
 import { useState } from "react"
 
-function ItemCount(){
+function ItemCount(quantitySelected){
 
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1);
+
+    const addQuantity = () => {
+        setCount(count +1)
+    }
+
+    const removeQuantity = () => {
+        setCount(count -1)
+    }
+
+    const onAdd = () => {
+        quantitySelected(count)
+    }
 
     return(
 
@@ -14,9 +26,9 @@ function ItemCount(){
 
                 <h5>{count}</h5>
 
-                <button onClick={()=> setCount(count ++)}>+</button>
+                <button onClick={addQuantity}>+</button>
 
-                <button onClick={()=> setCount(count --)}>-</button>
+                <button onClick={removeQuantity}>-</button>
 
             </div>
 
